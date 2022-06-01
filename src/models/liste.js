@@ -5,26 +5,23 @@ const usersSchema = new Schema({
     name: {
         type: String
     },
-    userType: {
+    collegeType: {
         type: String
     },
-    username: {
+    owner: {
         type: String
     },
-    password: {
+    dossier: {
         type: String
     },
-    picture: {
+    departement: {
         type: String
     },
-    phone: {
-        type: String
-    },
-    commune: {
-        type: String
-    },
+    candidates: {
+        type: Object
+    }
 }, {
     timestamps: true
 })
 
-module.exports = mongoose.model("Users", usersSchema);
+module.exports = mongoose.model("Listes", usersSchema);

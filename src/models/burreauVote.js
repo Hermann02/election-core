@@ -5,26 +5,26 @@ const usersSchema = new Schema({
     name: {
         type: String
     },
-    userType: {
+    collegeType: {
         type: String
     },
-    username: {
+    owner: {
         type: String
     },
-    password: {
+    vote: {
+        type: Object
+    },
+    departement: {
         type: String
     },
-    picture: {
-        type: String
+    listes: {
+        type: Object
     },
-    phone: {
-        type: String
-    },
-    commune: {
-        type: String
-    },
+    electeurs: {
+        type: Object
+    }
 }, {
     timestamps: true
 })
 
-module.exports = mongoose.model("Users", usersSchema);
+module.exports = mongoose.model("bureauxVote", usersSchema);
