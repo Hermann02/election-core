@@ -16,28 +16,13 @@ const usersSchema = new Schema({
     userType: {
         type: String
     },
-    sexe: {
+    password: {
         type: String
     },
     picture: {
         type: String
     },
     phone: {
-        type: String
-    },
-    profession: {
-        type: String
-    },
-    dateNaissance: {
-        type: String
-    },
-    pere: {
-        type: String
-    },
-    mere: {
-        type: String
-    },
-    dateInscription: {
         type: String
     },
     commune: {
@@ -50,4 +35,4 @@ const usersSchema = new Schema({
     timestamps: true
 })
 
-module.exports = mongoose.model("Demandeur", usersSchema);
+module.exports = mongoose.model("Electeurs", usersSchema);
