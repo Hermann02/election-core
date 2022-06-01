@@ -44,7 +44,8 @@ const usersSchema = new Schema({
         type: String
     },
     status: {
-        type: Boolean
+        type: Boolean,
+        default : false
     },
 }, {
     timestamps: true
