@@ -22,7 +22,7 @@ exports.list = (req, res) => {
 
 exports.create = (req, res) => {
     const {
-        name,
+        nom,
         collegeType,
         owner,
         listes,
@@ -32,7 +32,7 @@ exports.create = (req, res) => {
     } = req.body;
 
     const bureauVote = {
-        name,
+        nom,
         collegeType,
         owner,
         listes,
@@ -65,7 +65,7 @@ exports.update = (req, res) => {
     const id = req.params.id;
 
     const {
-        name,
+        nom,
         collegeType,
         owner,
         listes,
@@ -75,7 +75,7 @@ exports.update = (req, res) => {
     } = req.body;
 
     const newbureauVote = {
-        name,
+        nom,
         collegeType,
         owner,
         listes,

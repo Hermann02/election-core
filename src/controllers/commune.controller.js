@@ -22,12 +22,12 @@ exports.list = (req, res) => {
 
 exports.create = (req, res) => {
     const {
-        name,
+        nom,
         departement,
     } = req.body;
 
     const commune = {
-        name,
+        nom,
         departement,
     };
 
@@ -55,12 +55,12 @@ exports.update = (req, res) => {
     const id = req.params.id;
 
     const {
-        name,
+        nom,
         departement,
     } = req.body;
 
     const newcommune = {
-        name,
+        nom,
         departement,
     };
 

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const usersSchema = new Schema({
-    name: {
+    nom: {
         type: String
     },
     collegeType: {
@@ -17,7 +17,7 @@ const usersSchema = new Schema({
     departement: {
         type: String
     },
-    candidates: {
+    candidats: {
         type: Object
     }
 }, {

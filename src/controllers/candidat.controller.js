@@ -22,16 +22,16 @@ exports.list = (req, res) => {
 
 exports.create = (req, res) => {
     const {
-        firstName,
-        lastName,
+        nom,
+        prenom,
         profession,
         commune,
         ordre
     } = req.body;
 
     const candidat = {
-        firstName,
-        lastName,
+        nom,
+        prenom,
         profession,
         commune,
         ordre
@@ -61,16 +61,16 @@ exports.update = (req, res) => {
     const id = req.params.id;
 
     const {
-        firstName,
-        lastName,
+        nom,
+        prenom,
         profession,
         commune,
         ordre
     } = req.body;
 
     const newcandidat = {
-        firstName,
-        lastName,
+        nom,
+        prenom,
         profession,
         commune,
         ordre

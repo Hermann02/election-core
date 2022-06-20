@@ -1,7 +1,7 @@
 const departementModel = require('../models/departement');
 
 exports.list = (req, res) => {
-    departementModel.find({})
+    departementModel.find()
         .then((departement) => {
             res.json({
                 success: true,
@@ -22,12 +22,12 @@ exports.list = (req, res) => {
 
 exports.create = (req, res) => {
     const {
-        name,
+        nom,
         region,
     } = req.body;
 
     const departement = {
-        name,
+        nom,
         region,
     };
 
@@ -55,12 +55,12 @@ exports.update = (req, res) => {
     const id = req.params.id;
 
     const {
-        name,
+        nom,
         region,
     } = req.body;
 
     const newdepartement = {
-        name,
+        nom,
         region,
     };
 

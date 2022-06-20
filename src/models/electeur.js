@@ -7,10 +7,10 @@ const usersSchema = new Schema({
         required : true ,
         unique: true
     },
-    lastName: {
+    nom: {
         type: String
     },
-    firstName: {
+    prenom: {
         type: String
     },
     userType: {

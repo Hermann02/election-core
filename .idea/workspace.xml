@@ -1,4 +1,187 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e60c70e4-9ff8-403b-8a60-eb3507dc212c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/election-core.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/election-core.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/bureauVote.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/bureauVote.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/candidat.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/candidat.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/commune.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/commune.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/demandeur.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/demandeur.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/departement.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/departement.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/liste.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/liste.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/region.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/region.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/user.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/user.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/burreauVote.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/burreauVote.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/candidat.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/candidat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/commune.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/commune.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/demandeur.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/demandeur.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/departement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/departement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/electeur.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/electeur.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/liste.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/liste.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/region.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/region.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/mongoose.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/mongoose.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="29vXUkQVFr1IL7dk76v5n3H33Id" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../election" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="P:\memoire\election\src\views\lieux" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.start-front">
+    <configuration name="start-core" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start-front" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/../election/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="npm.start-core" />
+      <item itemvalue="npm.start-front" />
+    </list>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e60c70e4-9ff8-403b-8a60-eb3507dc212c" name="Default Changelist" comment="" />
+      <created>1655025268990</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1655025268990</updated>
+      <workItem from="1655025273581" duration="26846000" />
+      <workItem from="1655193792526" duration="4684000" />
+      <workItem from="1655286112169" duration="26234000" />
+      <workItem from="1655462160976" duration="19163000" />
+      <workItem from="1655624791777" duration="282000" />
+      <workItem from="1655625898829" duration="5822000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="138" y="17" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1655065593232">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="138" y="17" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1655065593232" />
+    <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1655083958673">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1655083958673" />
+    <state x="306" y="0" key="CommitChangelistDialog2" timestamp="1655289324025">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="306" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1655289324025" />
+    <state x="464" y="117" key="FileChooserDialogImpl" timestamp="1655057705187">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="464" y="117" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1655057705187" />
+    <state width="1345" height="191" key="GridCell.Tab.0.bottom" timestamp="1655715738372">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="191" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1655715738372" />
+    <state width="1345" height="191" key="GridCell.Tab.0.center" timestamp="1655715738372">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="191" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1655715738372" />
+    <state width="1345" height="191" key="GridCell.Tab.0.left" timestamp="1655715738372">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="191" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1655715738372" />
+    <state width="1345" height="191" key="GridCell.Tab.0.right" timestamp="1655715738372">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="191" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1655715738372" />
+    <state x="184" y="6" key="SettingsEditor" timestamp="1655075671845">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="184" y="6" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1655075671845" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1655479859399">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1655479859399" />
+    <state x="339" y="162" key="run.anything.popup" timestamp="1655473354427">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1655473354427" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1655312464145">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1655312464145" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/../election/src/views/lieux/departement/Departement.js</url>
+          <line>42</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
 </project>

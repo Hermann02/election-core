@@ -22,13 +22,13 @@ exports.list = (req, res) => {
 
 exports.create = (req, res) => {
     const {
-        name
+        nom
     } = req.body;
 
     const region = {
-        name,
+        nom,
     };
-
+    console.log(req.body)
     const newregion = new regionModel(region);
 
     newregion
@@ -53,11 +53,11 @@ exports.update = (req, res) => {
     const id = req.params.id;
 
     const {
-        name
+        nom
     } = req.body;
 
     const newregion = {
-        name
+        nom
     };
 
     regionModel.findByIdAndUpdate(id, {$set: newregion})

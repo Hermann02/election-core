@@ -1,11 +1,61 @@
 const demandeurModel = require('../models/demandeur');
 
+exports.create = (req, res) => {
+    const {
+        code,
+        nom,
+        prenom,
+        sexe,
+        telephone,
+        profession,
+        dateNaissance,
+        pere,
+        mere,
+        dateInscription,
+        commune,
+    } = req.body;
+
+    const demandeur = {
+        code,
+        nom,
+        prenom,
+        sexe,
+        telephone,
+        profession,
+        dateNaissance,
+        pere,
+        mere,
+        dateInscription,
+        commune,
+    };
+
+    const newDemandeur = new demandeurModel(demandeur);
+
+    newDemandeur
+        .save()
+        .then(demandeur => {
+            res.json({
+                success: true,
+                message: 'demandeur add successfully',
+                data: demandeur
+            });
+        })
+        .catch(err => {
+            res.json({
+                success: false,
+                message: err,
+                data: null
+            });
+        })
+};
+
+
 exports.list = (req, res) => {
     demandeurModel.find({})
         .then((demandeur) => {
             res.json({
                 success: true,
-                message: 'demandeur List',
+                message: 'liste des demandeurs',
                 data: demandeur
             });
         })
@@ -13,7 +63,7 @@ exports.list = (req, res) => {
             if (err) {
                 res.json({
                     success: false,
-                    message: 'demandeur List in empty',
+                    message: 'liste vide',
                     data: []
                 });
             }
@@ -28,6 +78,61 @@ exports.deleteDemandeur = (req, res) => {
             res.json({
                 success: true,
                 message: 'demandeur delete successfully',
+                data: demandeur
+            });
+        })
+        .catch((err => {
+            if (err) {
+                res.json({
+                    success: false,
+                    message: err,
+                    data: null
+                });
+            }
+        }))
+};
+
+
+
+
+exports.update = (req, res) => {
+    const id = req.params.id;
+
+    const {
+        code,
+        nom,
+        prenom,
+        sexe,
+        telephone,
+        profession,
+        dateNaissance,
+        pere,
+        mere,
+        dateInscription,
+        commune,
+        status,
+    } = req.body;
+
+    const newdemandeur = {
+        code,
+        nom,
+        prenom,
+        sexe,
+        telephone,
+        profession,
+        dateNaissance,
+        pere,
+        mere,
+        dateInscription,
+        commune,
+        status
+    };
+
+    demandeurModel.findByIdAndUpdate(id, {$set: newdemandeur})
+        .then((demandeur) => {
+            res.json({
+                success: true,
+                message: 'demandeur updated successfully',
                 data: demandeur
             });
         })

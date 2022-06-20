@@ -7,22 +7,16 @@ const usersSchema = new Schema({
         required : true ,
         unique: true
     },
-    lastName: {
+    nom: {
         type: String
     },
-    firstName: {
-        type: String
-    },
-    userType: {
+    prenom: {
         type: String
     },
     sexe: {
         type: String
     },
-    picture: {
-        type: String
-    },
-    phone: {
+    telephone: {
         type: String
     },
     profession: {

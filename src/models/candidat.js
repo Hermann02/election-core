@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const usersSchema = new Schema({
-    firstName: {
+    nom: {
         type : String,
     },
-    lastName: {
+    prenom: {
         type : String,
     },
     profession: {
