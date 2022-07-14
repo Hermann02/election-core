@@ -1,12 +1,14 @@
-// const express = require('express');
-// const router = express.Router();
-// const {create , deleteUser , list , login , single , update} = require('../controllers/User.Controller');
-//
-// router.post("/create" , create);
-// router.post("/:id/update" , update);
-// router.get("/:id/single" , single);
-// router.get("/:id/delete" , deleteUser);
-// router.post("/login" , login);
-// router.get("/list" , list);
-//
-// module.exports = router;
+const express = require("express");
+const Routeur = express.Router();
+const UserController = require("../controllers/user.controller");
+const {auth} = require("../middlewares/auth");
+
+Routeur.post("/signin",UserController.signin);
+Routeur.post("/signup", UserController.signup);
+Routeur.post("/signout",auth ,UserController.signout);
+Routeur.get("/list",UserController.getUsers);
+Routeur.post("/:id/update",UserController.update);
+Routeur.get("/:id/delete",UserController.deleteUser);
+
+
+module.exports = Routeur;

@@ -1,14 +1,19 @@
 const departementModel = require('../models/departement');
 
 exports.list = (req, res) => {
-    departementModel.find()
-        .then((departement) => {
-            res.json({
-                success: true,
-                message: 'departement List',
-                data: departement
-            });
-        })
+    departementModel.aggregate([
+        {
+            $addFields: {
+                id: "$_id"
+            }
+        }
+    ]).then((departement) => {
+        res.json({
+            success: true,
+            message: 'departement List',
+            data: departement
+        });
+    })
         .catch((err => {
             if (err) {
                 res.json({

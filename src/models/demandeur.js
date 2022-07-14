@@ -37,6 +37,10 @@ const usersSchema = new Schema({
     commune: {
         type: String
     },
+    type: {
+        type: String,
+        required: true
+    },
     status: {
         type: Boolean,
         default : false

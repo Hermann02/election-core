@@ -1,14 +1,19 @@
 const candidatModel = require('../models/candidat');
 
 exports.list = (req, res) => {
-    candidatModel.find({})
-        .then((candidat) => {
-            res.json({
-                success: true,
-                message: 'candidat List',
-                data: candidat
-            });
-        })
+    candidatModel.aggregate([
+        {
+            $addFields: {
+                id: "$_id"
+            }
+        }
+    ]).then((candidat) => {
+        res.json({
+            success: true,
+            message: 'candidat List',
+            data: candidat
+        });
+    })
         .catch((err => {
             if (err) {
                 res.json({
@@ -26,7 +31,7 @@ exports.create = (req, res) => {
         prenom,
         profession,
         commune,
-        ordre
+        ordre, dossier, sexe, date, lieu,
     } = req.body;
 
     const candidat = {
@@ -34,7 +39,9 @@ exports.create = (req, res) => {
         prenom,
         profession,
         commune,
-        ordre
+        dossier, sexe, date, lieu,
+        ordre,
+        owner: req.user._id
     };
 
     const newcandidat = new candidatModel(candidat);
@@ -65,7 +72,9 @@ exports.update = (req, res) => {
         prenom,
         profession,
         commune,
-        ordre
+        ordre,
+        dossier, sexe, date, lieu, statut
+
     } = req.body;
 
     const newcandidat = {
@@ -73,7 +82,11 @@ exports.update = (req, res) => {
         prenom,
         profession,
         commune,
-        ordre
+        ordre,
+        sexe,
+        dossier,
+        lieu,
+        date, statut
     };
 
     candidatModel.findByIdAndUpdate(id, {$set: newcandidat})

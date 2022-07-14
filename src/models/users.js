@@ -31,7 +31,7 @@ const usersSchema = new Schema({
         type: String,
         required: true
     },
-    commune: {
+    departement: {
         type: String,
         required: true
     },
@@ -55,6 +55,7 @@ const usersSchema = new Schema({
 
 usersSchema.methods.generateAuthToken = async function () {
     const user = this;
+    console.log(user);
     const token = jwt.sign({
         id: user.id
     }, process.env.APP_KEY);
@@ -64,7 +65,7 @@ usersSchema.methods.generateAuthToken = async function () {
     });
 
     await user.save();
-    const one = await user.findOne({
+    const one = await User.findOne({
         _id: user.id
     });
 
@@ -105,7 +106,7 @@ usersSchema.methods.generateEmailResetToken = async function () {
 
 
 //check if users email is not already in use
-userSchema.statics.checkEmailInUse = async (email) => {
+usersSchema.statics.checkEmailInUse = async (email) => {
     const user = await User.findOne({
         email
     });
@@ -117,11 +118,12 @@ userSchema.statics.checkEmailInUse = async (email) => {
 
 
 //find user by email and password
-userSchema.statics.findByCredentials = async (email, password) => {
+usersSchema.statics.findByCredentials = async (email, password) => {
     const user = await User.findOne({
-        email,
-        accountVerified: true,
+        email
     });
+
+    console.log('user',user);
 
     if (!user) {
         return;
@@ -136,7 +138,7 @@ userSchema.statics.findByCredentials = async (email, password) => {
 };
 
 //Hash password before saving
-userSchema.pre('save', async function (next) {
+usersSchema.pre('save', async function (next) {
     const user = this;
 
     if (user.isModified('password')) {

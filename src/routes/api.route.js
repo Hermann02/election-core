@@ -8,6 +8,7 @@ const communeRoute = require('./commune.route');
 const demandeurRoute = require('./demandeur.route');
 const listeRoute = require('./liste.route');
 const candidatRoute = require('./candidat.route');
+const userRoute = require('./user.route');
 
 // router.use('/users', userRoute);
 router.use('/regions', regionRoute);
@@ -16,6 +17,7 @@ router.use('/communes', communeRoute);
 router.use('/candidats', candidatRoute);
 router.use('/listes', listeRoute);
 router.use('/demandeur', demandeurRoute);
+router.use('/users', userRoute);
 
 
 module.exports = router;

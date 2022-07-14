@@ -11,11 +11,31 @@ const usersSchema = new Schema({
     profession: {
         type : String,
     },
+    sexe: {
+        type : String,
+    },
+    lieu: {
+        type: String
+    },
+    date: {
+        type: String
+    },
+    dossier: {
+        type: String
+    },
+    statut: {
+        type: String,
+        default: false
+    },
     commune: {
         type: String
     },
     ordre: {
-        type: Number
+        type: Number,
+    },
+    owner: {
+        type: Number,
+        required : true
     },
 }, {
     timestamps: true

@@ -1,10 +1,9 @@
 const User = require("../models/users");
-const {sendWelcomeEmail, sendPasswordResetEmail} = require("../utils/mail");
 const validator = require("validator");
 
 exports.signup = async (req, res, next) => {
     try {
-        const propertiesArray = ['nom', 'prenom', 'email','phone','commune','userType', 'confirmedPassword', 'password'];
+        const propertiesArray = ['nom', 'prenom', 'email', 'phone', 'departement', 'userType', 'confirmedPassword', 'password'];
 
         for (const prop of Object.keys(req.body)) {
             if (!propertiesArray.includes(prop)) {
@@ -38,15 +37,6 @@ exports.signup = async (req, res, next) => {
         const user = new User(req.body);
         const token = await user.generateEmailVerificationToken();
 
-        console.log(token);
-
-
-        await sendWelcomeEmail({
-            email: user.email,
-            emailsSubject: 'Account verification',
-            emailText: 'Please verify your email account',
-            token,
-        });
 
         await res.json({
             success: true,
@@ -105,19 +95,20 @@ exports.signin = async (req, res, next) => {
         if (!user) {
             await res.json({
                 success: false,
-                message: "Invalid Email",
+                message: "Bad credentials",
                 data: null
+            });
+        } else {
+            console.log(user.type);
+            const token = await user.generateAuthToken();
+
+            await res.json({
+                success: true,
+                message: "Login success",
+                data: token
             });
         }
 
-
-        const token = await user.generateAuthToken();
-
-        await res.json({
-            success: true,
-            message: "Login success",
-            data: token
-        });
     } catch (e) {
         console.log(e);
 
@@ -228,12 +219,100 @@ exports.getProfile = async (req, res, next) => {
     }
 };
 
-exports.getMembers = async (req, res, next) => {
+
+exports.update = async (req, res) => {
+    const id = req.params.id;
+
+    const propertiesArray = ['nom', 'prenom', 'email', 'phone', 'departement', 'userType'];
+
+    for (const prop of Object.keys(req.body)) {
+        if (!propertiesArray.includes(prop)) {
+            await res.json({
+                success: false,
+                message: "champs incorrects"
+            });
+        }
+    }
+
+    const {
+        nom,prenom, email, phone, departement, userType
+    } = req.body;
+
+    const newuser = {
+        nom,prenom, email, phone, departement, userType
+    };
+
+    User.findByIdAndUpdate(id, {$set: newuser})
+        .then((user) => {
+            res.json({
+                success: true,
+                message: 'user updated successfully',
+                data: user
+            });
+        })
+        .catch((err => {
+            if (err) {
+                res.json({
+                    success: false,
+                    message: err,
+                    data: null
+                });
+            }
+        }))
+};
+
+exports.deleteUser = (req, res) => {
+    User.findByIdAndDelete({_id: req.params.id})
+        .then((user) => {
+            res.json({
+                success: true,
+                message: 'user delete successfully',
+                data: user
+            });
+        })
+        .catch((err => {
+            if (err) {
+                res.json({
+                    success: false,
+                    message: err,
+                    data: null
+                });
+            }
+        }))
+};
+
+exports.single = (req, res) => {
+    User.findOne({_id: req.params.id})
+        .then((user) => {
+            res.json({
+                success: true,
+                message: 'One user',
+                data: user
+            });
+        })
+        .catch((err => {
+            if (err) {
+                res.json({
+                    success: false,
+                    message: err,
+                    data: null
+                });
+            }
+        }))
+};
+
+exports.getUsers = async (req, res, next) => {
     try {
-        const result = await User.find();
+        const result = await User.aggregate([
+            {
+                $addFields: {
+                    id: "$_id"
+                }
+            }
+        ]);
         await res.json({
             success: true,
-            message: "Members list",
+            message: "Users list",
             data: result
         });
 
@@ -260,15 +339,15 @@ exports.updateProfile = async (req, res, next) => {
         }
 
         propertiesArray.forEach((property) => {
-            req.User[property] = req.body[property];
+            req.user[property] = req.body[property];
         });
 
-        await req.User.save();
+        await req.user.save();
 
         await res.json({
             success: true,
             message: "Profile Updated",
-            data: req.User
+            data: req.user
         });
     } catch (e) {
         console.log(e);
@@ -284,15 +363,15 @@ exports.updateProfile = async (req, res, next) => {
 
 exports.modifyPassword = async (req, res, next) => {
     try {
-        const User = await User.findByCredentials(req.User.email, req.body.oldPassword);
-        if (!User) {
+        const user = await User.findByCredentials(req.user.email, req.body.oldPassword);
+        if (!user) {
 
             await res.json({
                 success: false,
                 message: "No member found"
             });
         }
-        console.log(User);
+        console.log(user);
         if (!validator.equals(req.body.password, req.body.confirmedPassword)) {
 
             await res.json({
@@ -311,8 +390,8 @@ exports.modifyPassword = async (req, res, next) => {
             });
         }
 
-        req.User.password = req.body.password;
-        await req.User.save();
+        req.user.password = req.body.password;
+        await req.user.save();
 
 
         await res.json({

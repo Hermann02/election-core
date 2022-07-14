@@ -1,14 +1,19 @@
 const listeModel = require('../models/liste');
 
 exports.list = (req, res) => {
-    listeModel.find({})
-        .then((liste) => {
-            res.json({
-                success: true,
-                message: 'liste List',
-                data: liste
-            });
-        })
+    listeModel.aggregate([
+        {
+            $addFields: {
+                id: "$_id"
+            }
+        }
+    ]).then((liste) => {
+        res.json({
+            success: true,
+            message: 'liste List',
+            data: liste
+        });
+    })
         .catch((err => {
             if (err) {
                 res.json({

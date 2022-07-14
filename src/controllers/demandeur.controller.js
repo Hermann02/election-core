@@ -13,6 +13,7 @@ exports.create = (req, res) => {
         mere,
         dateInscription,
         commune,
+        type,
     } = req.body;
 
     const demandeur = {
@@ -27,6 +28,7 @@ exports.create = (req, res) => {
         mere,
         dateInscription,
         commune,
+        type,
     };
 
     const newDemandeur = new demandeurModel(demandeur);
@@ -51,14 +53,19 @@ exports.create = (req, res) => {
 
 
 exports.list = (req, res) => {
-    demandeurModel.find({})
-        .then((demandeur) => {
-            res.json({
-                success: true,
-                message: 'liste des demandeurs',
-                data: demandeur
-            });
-        })
+    demandeurModel.aggregate([
+        {
+            $addFields: {
+                id: "$_id"
+            }
+        }
+    ]).then((demandeur) => {
+        res.json({
+            success: true,
+            message: 'liste des demandeurs',
+            data: demandeur
+        });
+    })
         .catch((err => {
             if (err) {
                 res.json({
@@ -69,7 +76,6 @@ exports.list = (req, res) => {
             }
         }))
 };
-
 
 
 exports.deleteDemandeur = (req, res) => {
@@ -93,8 +99,6 @@ exports.deleteDemandeur = (req, res) => {
 };
 
 
-
-
 exports.update = (req, res) => {
     const id = req.params.id;
 
@@ -110,6 +114,7 @@ exports.update = (req, res) => {
         mere,
         dateInscription,
         commune,
+        type,
         status,
     } = req.body;
 
@@ -122,6 +127,7 @@ exports.update = (req, res) => {
         profession,
         dateNaissance,
         pere,
+        type,
         mere,
         dateInscription,
         commune,

@@ -1,14 +1,19 @@
 const regionModel = require('../models/region');
 
 exports.list = (req, res) => {
-    regionModel.find({})
-        .then((region) => {
-            res.json({
-                success: true,
-                message: 'region List',
-                data: region
-            });
-        })
+    regionModel.aggregate([
+        {
+            $addFields: {
+                id: "$_id"
+            }
+        }
+    ]).then((region) => {
+        res.json({
+            success: true,
+            message: 'region List',
+            data: region
+        });
+    })
         .catch((err => {
             if (err) {
                 res.json({

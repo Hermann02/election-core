@@ -1,14 +1,22 @@
 const communeModel = require('../models/commune');
 
-exports.list = (req, res) => {
-    communeModel.find({})
-        .then((commune) => {
-            res.json({
-                success: true,
-                message: 'commune List',
-                data: commune
-            });
-        })
+exports.list = async (req, res) => {
+
+    communeModel.aggregate([
+        {
+            $addFields: {
+                id: "$_id"
+            }
+        }
+    ]).then((commune) => {
+
+
+        res.json({
+            success: true,
+            message: 'commune List',
+            data: commune
+        });
+    })
         .catch((err => {
             if (err) {
                 res.json({
@@ -17,7 +25,34 @@ exports.list = (req, res) => {
                     data: []
                 });
             }
-        }))
+        }));
+
+
+    // await res.json({
+    //     success: true,
+    //     message: 'commune List',
+    //     data: commune
+    // });
+
+    // communeModel.find({})
+    //     .then((commune) => {
+    //
+    //
+    //         res.json({
+    //             success: true,
+    //             message: 'commune List',
+    //             data: commune
+    //         });
+    //     })
+    //     .catch((err => {
+    //         if (err) {
+    //             res.json({
+    //                 success: false,
+    //                 message: 'commune List in empty',
+    //                 data: []
+    //             });
+    //         }
+    //     }))
 };
 
 exports.create = (req, res) => {
