@@ -16,10 +16,12 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-fileupload": "^1.4.0",
     "image-to-base64": "^2.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.1.0",
     "mongoose": "^5.13.7",
+    "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.6.3",
     "nodemon": "^2.0.13",
     "validator": "^13.7.0"

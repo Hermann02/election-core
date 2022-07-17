@@ -11,8 +11,9 @@ const usersSchema = new Schema({
     owner: {
         type: String
     },
-    dossier: {
-        type: String
+    status: {
+        type: String,
+        default: 'En attente'
     },
     departement: {
         type: String

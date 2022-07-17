@@ -3,16 +3,16 @@ const Schema = mongoose.Schema;
 
 const usersSchema = new Schema({
     nom: {
-        type : String,
+        type: String,
     },
     prenom: {
-        type : String,
+        type: String,
     },
     profession: {
-        type : String,
+        type: String,
     },
     sexe: {
-        type : String,
+        type: String,
     },
     lieu: {
         type: String
@@ -30,12 +30,15 @@ const usersSchema = new Schema({
     commune: {
         type: String
     },
+    observation: {
+        type: String
+    },
     ordre: {
         type: Number,
     },
     owner: {
-        type: Number,
-        required : true
+        type: String,
+        required: true
     },
 }, {
     timestamps: true

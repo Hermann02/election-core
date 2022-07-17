@@ -1,4 +1,5 @@
 const candidatModel = require('../models/candidat');
+const fs = require('fs');
 
 exports.list = (req, res) => {
     candidatModel.aggregate([
@@ -25,7 +26,17 @@ exports.list = (req, res) => {
         }))
 };
 
-exports.create = (req, res) => {
+exports.getFiles = (req, res, next) => {
+    console.log(req.file.path);
+    res.json({
+        success: true,
+        message: 'candidat List in empty',
+        data: req.file.path
+    });
+};
+
+exports.create = (req, res, next) => {
+
     const {
         nom,
         prenom,
@@ -45,23 +56,23 @@ exports.create = (req, res) => {
     };
 
     const newcandidat = new candidatModel(candidat);
+    console.log(newcandidat);
+    newcandidat.save().then(candidat => {
+        res.json({
+            success: true,
+            message: 'candidat add successfully',
+            data: candidat
+        });
+    }).catch(err => {
+        console.log(err)
+        res.json({
+            success: false,
+            message: err,
+            data: null
+        });
+    })
 
-    newcandidat
-        .save()
-        .then(candidat => {
-            res.json({
-                success: true,
-                message: 'candidat add successfully',
-                data: candidat
-            });
-        })
-        .catch(err => {
-            res.json({
-                success: false,
-                message: err,
-                data: null
-            });
-        })
+
 };
 
 exports.update = (req, res) => {
@@ -73,7 +84,7 @@ exports.update = (req, res) => {
         profession,
         commune,
         ordre,
-        dossier, sexe, date, lieu, statut
+        dossier, sexe, date, lieu, statut, observation
 
     } = req.body;
 
@@ -86,7 +97,7 @@ exports.update = (req, res) => {
         sexe,
         dossier,
         lieu,
-        date, statut
+        date, statut, observation
     };
 
     candidatModel.findByIdAndUpdate(id, {$set: newcandidat})

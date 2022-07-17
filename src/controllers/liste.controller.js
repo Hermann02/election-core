@@ -29,8 +29,6 @@ exports.create = (req, res) => {
     const {
         nom,
         collegeType,
-        owner,
-        dossier,
         departement,
         candidats
     } = req.body;
@@ -38,10 +36,9 @@ exports.create = (req, res) => {
     const liste = {
         nom,
         collegeType,
-        owner,
-        dossier,
         departement,
-        candidats
+        candidats,
+        owner: req.user._id
     };
 
     const newliste = new listeModel(liste);
@@ -71,18 +68,18 @@ exports.update = (req, res) => {
         nom,
         collegeType,
         owner,
-        dossier,
+        status,
         departement,
-        candidats
+        candidats,
     } = req.body;
 
     const newliste = {
         nom,
         collegeType,
         owner,
-        dossier,
+        status,
         departement,
-        candidats
+        candidats,
     };
 
     listeModel.findByIdAndUpdate(id, {$set: newliste})
