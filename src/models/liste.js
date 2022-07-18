@@ -19,7 +19,7 @@ const usersSchema = new Schema({
         type: String
     },
     candidats: {
-        type: Object
+        type: Number
     }
 }, {
     timestamps: true

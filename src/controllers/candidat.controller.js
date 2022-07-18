@@ -84,7 +84,7 @@ exports.update = (req, res) => {
         profession,
         commune,
         ordre,
-        dossier, sexe, date, lieu, statut, observation
+        dossier, sexe, date, lieu, statut, observation, owner
 
     } = req.body;
 
@@ -95,6 +95,7 @@ exports.update = (req, res) => {
         commune,
         ordre,
         sexe,
+        owner,
         dossier,
         lieu,
         date, statut, observation
