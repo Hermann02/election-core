@@ -23,9 +23,9 @@ const usersSchema = new Schema({
     dossier: {
         type: String
     },
-    statut: {
+    status: {
         type: String,
-        default: false
+        default: "En Attente"
     },
     commune: {
         type: String

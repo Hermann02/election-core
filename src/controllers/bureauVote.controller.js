@@ -1,14 +1,19 @@
-const bureauVoteModel = require('../models/bureauVote');
+const bureauVoteModel = require('../models/burreauVote');
 
 exports.list = (req, res) => {
-    bureauVoteModel.find({})
-        .then((bureauVote) => {
-            res.json({
-                success: true,
-                message: 'bureauVote List',
-                data: bureauVote
-            });
-        })
+    bureauVoteModel.aggregate([
+        {
+            $addFields: {
+                id: "$_id"
+            }
+        }
+    ]).then((bureauVote) => {
+        res.json({
+            success: true,
+            message: 'bureauVote List',
+            data: bureauVote
+        });
+    })
         .catch((err => {
             if (err) {
                 res.json({
@@ -22,23 +27,16 @@ exports.list = (req, res) => {
 
 exports.create = (req, res) => {
     const {
-        nom,
-        collegeType,
-        owner,
-        listes,
-        departement,
-        electeurs,
-        vote
+        nom, collegeType, listes, departement, electeurs,
     } = req.body;
 
     const bureauVote = {
         nom,
         collegeType,
-        owner,
+        owner: req.user._id,
         listes,
         departement,
         electeurs,
-        vote
     };
 
     const newbureauVote = new bureauVoteModel(bureauVote);
@@ -71,7 +69,6 @@ exports.update = (req, res) => {
         listes,
         departement,
         electeurs,
-        vote
     } = req.body;
 
     const newbureauVote = {
@@ -81,7 +78,6 @@ exports.update = (req, res) => {
         listes,
         departement,
         electeurs,
-        vote
     };
 
     bureauVoteModel.findByIdAndUpdate(id, {$set: newbureauVote})

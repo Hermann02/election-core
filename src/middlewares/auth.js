@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 const User = require('../models/users');
+const Electeur = require('../models/electeur');
 
 
 exports.auth = async (req, res, next) => {
@@ -20,6 +21,33 @@ exports.auth = async (req, res, next) => {
 
         req.token = token;
         req.user = user;
+
+        next()
+    } catch (e) {
+        console.log(e);
+        res.json({
+            success : false,
+            message : e,
+        })
+    }
+};
+exports.authE = async (req, res, next) => {
+    try {
+        const token = req.header('Authorization').replace('Bearer ', '');
+        console.log(token)
+        const decoded = jwt.verify(token, process.env.APP_KEY);
+        console.log(token, decoded, "token");
+        const electeur = await Electeur.findOne({
+            _id: decoded.id,
+            'tokens.token': token
+        });
+
+        if (!electeur) {
+            throw new Error()
+        }
+
+        req.token = token;
+        req.electeur = electeur;
 
         next()
     } catch (e) {

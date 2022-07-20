@@ -84,7 +84,7 @@ exports.update = (req, res) => {
         profession,
         commune,
         ordre,
-        dossier, sexe, date, lieu, statut, observation, owner
+        dossier, sexe, date, lieu, status, observation, owner
 
     } = req.body;
 
@@ -98,7 +98,7 @@ exports.update = (req, res) => {
         owner,
         dossier,
         lieu,
-        date, statut, observation
+        date, status, observation
     };
 
     candidatModel.findByIdAndUpdate(id, {$set: newcandidat})

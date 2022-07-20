@@ -1,10 +1,9 @@
-
-const User = require("../models/users");
-const {sendWelcomeEmail, sendPasswordResetEmail} = require("../utils/mail");
+const Electeur = require("../models/electeur");
+const Demandeur = require("../models/demandeur");
 const validator = require("validator");
 exports.signup = async (req, res, next) => {
     try {
-        const propertiesArray = ['nom', 'prenom', 'email','phone','departement','userType', 'confirmedPassword', 'password'];
+        const propertiesArray = ['code', 'userType', 'confirmedPassword', 'departement', 'password'];
 
         for (const prop of Object.keys(req.body)) {
             if (!propertiesArray.includes(prop)) {
@@ -15,15 +14,6 @@ exports.signup = async (req, res, next) => {
             }
         }
 
-        const emailInUse = await User.checkEmailInUse(req.body.email);
-
-
-        if (emailInUse) {
-            await res.json({
-                success: false,
-                message: "email dejà utilisé",
-            });
-        }
 
         if (!validator.equals(req.body.password, req.body.confirmedPassword)) {
 
@@ -35,25 +25,16 @@ exports.signup = async (req, res, next) => {
         }
 
 
-        const user = new User(req.body);
-        const token = await user.generateEmailVerificationToken();
-
-        console.log(token);
-
-
-        // await sendWelcomeEmail({
-        //     email: user.email,
-        //     emailsSubject: 'Account verification',
-        //     emailText: 'Please verify your email account',
-        //     token,
-        // });
+        const electeur = new Electeur(req.body);
+        await user.save();
 
         await res.json({
             success: true,
-            message: "Email sent",
-            data: user
+            message: "inscription réussi",
+            data: electeur
         });
 
+        Demandeur.findOneAndUpdate({code: req.body.code}, {$set: {status: true}});
     } catch (error) {
         await res.json({
             success: false,
@@ -62,4 +43,83 @@ exports.signup = async (req, res, next) => {
         });
     }
 
+};
+
+
+exports.signin = async (req, res, next) => {
+    try {
+
+        const electeur = await Electeur.findByCredentials(req.body.code, req.body.password);
+        if (!electeur) {
+            await res.json({
+                success: false,
+                message: "Bad credentials",
+                data: null
+            });
+        } else {
+            console.log(electeur.type);
+            const token = await electeur.generateAuthToken();
+
+            await res.json({
+                success: true,
+                message: "Login success",
+                data: token
+            });
+        }
+
+    } catch (e) {
+        console.log(e);
+
+        await res.json({
+            success: false,
+            message: "Error",
+            data: e
+        });
+    }
+};
+
+exports.signout = async (req, res, next) => {
+    console.log(req);
+    try {
+        req.electeur.tokens = req.electeur.tokens.filter((token) => {
+            return token.token !== req.token
+        });
+        await req.electeur.save();
+
+        await res.json({
+            success: true,
+            message: "Logged out"
+        });
+    } catch (e) {
+        await res.json({
+            success: false,
+            message: "Error",
+            data: e
+        });
+    }
+};
+
+
+exports.getElecteurs = async (req, res, next) => {
+    try {
+        const result = await Electeur.aggregate([
+            {
+                $addFields: {
+                    id: "$_id"
+                }
+            }
+        ]);
+        await res.json({
+            success: true,
+            message: "Electeurs list",
+            data: result
+        });
+
+    } catch (e) {
+        await res.json({
+            success: false,
+            message: "Error",
+            data: e
+        });
+    }
 };
